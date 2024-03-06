@@ -1,4 +1,5 @@
 import { BFS } from "../algorithms/bfs.js";
+import { DFS } from "../algorithms/dfs.js";
 import {
   BUTTON_IDS,
   getCellId,
@@ -8,6 +9,7 @@ import {
   CELL_CLASS_NAMES,
   enableButton,
   sleep,
+  PATH_ALGORITHMS,
 } from "./utils.js";
 import { removeGrid, createGrid, getGrid } from "./gridHelper.js";
 
@@ -42,32 +44,46 @@ export const addEventListenerToButtons = (rows, cols) => {
 };
 
 const fasterAnimations = (_e) => {
-  BFS.setSpeed(4);
+  const path = getPathAlgorithmClass();
+  path.setSpeed(4);
 };
 
 const slowerAnimations = (_e) => {
-  BFS.setSpeed(0.25);
+  const path = getPathAlgorithmClass();
+  path.setSpeed(0.25);
+};
+
+const getPathAlgorithmClass = () => {
+  const pathSelectElement = getElementFromDoc("pathOptions");
+  const path = pathSelectElement.value;
+
+  switch (path) {
+    case PATH_ALGORITHMS.BFS:
+      return BFS;
+    case PATH_ALGORITHMS.DFS:
+      return DFS;
+  }
 };
 
 // TO-DO: Add more algos
 const handleFindPathClick = (_e, rows, cols) => {
-  BFS.resetAbort();
+  const path = getPathAlgorithmClass();
+  path.resetAbort();
   disableButton(BUTTON_IDS.FindPath);
   disableButton(BUTTON_IDS.Generate);
 
   const grid = getGrid(rows, cols, true);
-  BFS.bfs(grid, document);
+  path.findPath(grid, document);
 };
 
 // Reset BFS
-// Bug if we switch between find path and reset too quickly then some
-// red cell will persist
 const resetGraph = async (_e, rows, cols) => {
+  const path = getPathAlgorithmClass();
   disableButton(BUTTON_IDS.FindPath);
   disableButton(BUTTON_IDS.Generate);
   disableButton(BUTTON_IDS.Reset);
-  BFS.stopBfs();
-  await sleep(100);
+  path.stopPathFinding();
+  await sleep(200);
 
   removeGrid(rows);
   createGrid(rows, cols);

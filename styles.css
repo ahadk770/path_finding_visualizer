@@ -34,6 +34,13 @@
     border-width: thin;
 }
 
+.cellFound {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color:#46923C;
+    border-width: thin;
+}
+
 .gridRow {
     display: flex;
 }

@@ -5,11 +5,12 @@ import {
   sleep,
 } from "../helpers/utils.js";
 import { Queue } from "../helpers/Queue.js";
+import { isInvalidCell } from "../helpers/gridHelper.js";
 
 export const BFS = {
   abort: false,
   speed: 1,
-  bfs(graph, document) {
+  findPath(graph, document) {
     const runBfs = async (graph, document) => {
       if (this.abort) {
         this.abort = false;
@@ -38,7 +39,7 @@ export const BFS = {
           return;
         }
 
-        if (isInvalidCell(x, y, rows, cols, graph, visited)) {
+        if (isInvalidCell(x, y, graph, visited)) {
           continue;
         }
 
@@ -49,6 +50,12 @@ export const BFS = {
         }
 
         if (x === endPointX && y === endPointY) {
+          const key = getCellId(x, y);
+          const currNode = document.getElementById(CELL_CLASS_NAMES.Cell + key);
+          if (currNode) {
+            await sleep(100 / this.speed);
+            currNode.className = CELL_CLASS_NAMES.CellFound;
+          }
           console.log("Found path...");
           break;
         }
@@ -74,46 +81,10 @@ export const BFS = {
           CELL_CLASS_NAMES.Cell + getCellId(x, y - 1)
         );
 
-        await animateNeighbors(
-          x + 1,
-          y,
-          rows,
-          cols,
-          graph,
-          visited,
-          up,
-          this.speed
-        );
-        await animateNeighbors(
-          x - 1,
-          y,
-          rows,
-          cols,
-          graph,
-          visited,
-          down,
-          this.speed
-        );
-        await animateNeighbors(
-          x,
-          y + 1,
-          rows,
-          cols,
-          graph,
-          visited,
-          left,
-          this.speed
-        );
-        await animateNeighbors(
-          x,
-          y - 1,
-          rows,
-          cols,
-          graph,
-          visited,
-          right,
-          this.speed
-        );
+        await animateNeighbors(x + 1, y, graph, visited, up, this.speed);
+        await animateNeighbors(x - 1, y, graph, visited, down, this.speed);
+        await animateNeighbors(x, y + 1, graph, visited, left, this.speed);
+        await animateNeighbors(x, y - 1, graph, visited, right, this.speed);
 
         // mark cell as visited
         if (currNode) {
@@ -133,34 +104,14 @@ export const BFS = {
     BFS.abort = false;
   },
 
-  async stopBfs() {
+  async stopPathFinding() {
     BFS.abort = true;
   },
 };
 
-const animateNeighbors = async (
-  x,
-  y,
-  rows,
-  cols,
-  graph,
-  visited,
-  element,
-  speed
-) => {
-  if (element && !isInvalidCell(x, y, rows, cols, graph, visited)) {
+const animateNeighbors = async (x, y, graph, visited, element, speed) => {
+  if (element && !isInvalidCell(x, y, graph, visited)) {
     await sleep(50 / speed);
     element.className = CELL_CLASS_NAMES.CellNeighbor;
   }
-};
-
-const isInvalidCell = (x, y, rows, cols, graph, visited) => {
-  return (
-    x < 0 ||
-    y < 0 ||
-    x >= rows ||
-    y >= cols ||
-    graph[x][y] === 1 ||
-    visited.has(getCellId(x, y))
-  );
 };

@@ -48,3 +48,16 @@ export const getGrid = (rows, cols, disabled = false) => {
   }
   return graph;
 };
+
+export const isInvalidCell = (x, y, graph, visited) => {
+  const rows = graph.length;
+  const cols = graph[0].length;
+  return (
+    x < 0 ||
+    y < 0 ||
+    x >= rows ||
+    y >= cols ||
+    graph[x][y] === 1 ||
+    visited.has(getCellId(x, y))
+  );
+};

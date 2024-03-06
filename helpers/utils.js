@@ -19,6 +19,12 @@ export const CELL_CLASS_NAMES = {
   CellVisited: "cellVisited",
   CellNeighbor: "cellNeighbor",
   CellActive: "cellActive",
+  CellFound: "cellFound",
+};
+
+export const PATH_ALGORITHMS = {
+  DFS: "dfs",
+  BFS: "bfs",
 };
 
 export const getElementFromDoc = (id) => {
