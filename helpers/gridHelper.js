@@ -1,5 +1,6 @@
 import {
   CELL_CLASS_NAMES,
+  DIV_ID,
   getCellId,
   EVENT_HANDLER,
   getElementFromDoc,
@@ -7,11 +8,15 @@ import {
 import { handleClick } from "./eventHandlers.js";
 
 export const createGrid = (rows, cols) => {
+  const grid = document.createElement("div");
+  grid.className = DIV_ID.GridContainer;
+  grid.id = DIV_ID.GridContainer;
+  document.body.appendChild(grid);
   for (var i = 0; i < rows; i++) {
     const rowDiv = document.createElement("div");
     rowDiv.className = "gridRow";
     rowDiv.id = i;
-    document.body.appendChild(rowDiv);
+    grid.appendChild(rowDiv);
     for (var j = 0; j < cols; j++) {
       const cell = document.createElement(`button`);
       cell.id = CELL_CLASS_NAMES.Cell + getCellId(i, j);
@@ -22,11 +27,9 @@ export const createGrid = (rows, cols) => {
   }
 };
 
-export const removeGrid = (rows) => {
-  for (var i = 0; i < rows; i++) {
-    const rowDiv = getElementFromDoc(i);
-    rowDiv.remove();
-  }
+export const removeGrid = () => {
+  const grid = getElementFromDoc(DIV_ID.GridContainer);
+  grid.remove();
 };
 
 export const getGrid = (rows, cols, disabled = false) => {

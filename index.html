@@ -1,25 +1,28 @@
- 
 <!DOCTYPE HTML> 
 <html> 
     <head> 
         <title>Path Finding</title> 
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head> 
     
-    <body> 
-        <div>
-            <button id="slow">Slower</button>
-            <button id="findPath">Find Path</button>
-            <button id="fast">Faster</button>
-        </div>
-        <div>
-            <select id="pathOptions">
-                <option value="bfs">BFS</option>
-                <option value="dfs">DFS</option>
-              </select>
-        </div>
-        <button id="reset">Reset</button>
-        <button id="generate">Generate Map</button>
+    <body>
+        <div class="header">
+            <h1 class="title">Path Finder</h1>
+            <div class="playButtons">
+                <button id="slow"><i class="fa fa-fast-backward"></i></button>
+                <button id="findPath">Find Path</button>
+                <button id="fast"><i class="fa fa-fast-forward"></i></button>
+            </div>
+            <div class="playOptions">
+                <select id="pathOptions">
+                    <option value="bfs">BFS</option>
+                    <option value="dfs">DFS</option>
+                </select>
+                <button id="generate">Generate Random Map</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div> 
         <script type="module" src="script.js"></script> 
     </body> 
   

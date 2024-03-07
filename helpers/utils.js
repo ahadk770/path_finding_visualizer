@@ -9,6 +9,10 @@ export const BUTTON_IDS = {
   Slow: "slow",
 };
 
+export const DIV_ID = {
+  GridContainer: "gridContainer",
+};
+
 export const EVENT_HANDLER = {
   Click: "click",
 };

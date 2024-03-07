@@ -1,3 +1,46 @@
+.playButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: .5rem;
+    height: 2rem;
+    margin: 0 0 1rem 0;
+}
+
+.playOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: .5rem;
+    height: 2rem;
+}
+
+.gridContainer {
+    display: grid;
+    justify-items: center;
+    width: max-content;
+    
+    margin: 1rem auto auto auto;
+    border: solid;
+}
+
+.header {
+    margin: auto;
+    padding: 1rem;
+    background-color: #344955;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1rem;
+}
+
+.title{
+    color: #FFF;
+    margin: 1rem 0 1rem 0;
+}
+
 .cell {
     height: 2.5rem;
     width: 2.5rem;
@@ -43,4 +86,8 @@
 
 .gridRow {
     display: flex;
+}
+
+body {
+    background-color: #50727B;
 }

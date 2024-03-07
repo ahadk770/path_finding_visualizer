@@ -85,7 +85,7 @@ const resetGraph = async (_e, rows, cols) => {
   path.stopPathFinding();
   await sleep(200);
 
-  removeGrid(rows);
+  removeGrid();
   createGrid(rows, cols);
   enableButton(BUTTON_IDS.FindPath);
   enableButton(BUTTON_IDS.Generate);
@@ -94,7 +94,7 @@ const resetGraph = async (_e, rows, cols) => {
 
 // Generate a random grid with walls
 const generateRandomGrid = async (_e, rows, cols) => {
-  removeGrid(rows);
+  removeGrid();
   createGrid(rows, cols);
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
