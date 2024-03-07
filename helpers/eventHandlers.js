@@ -76,7 +76,7 @@ const handleFindPathClick = (_e, rows, cols) => {
   path.findPath(grid, document);
 };
 
-// Reset BFS
+// Reset Graph and Path Finder Algorithm
 const resetGraph = async (_e, rows, cols) => {
   const path = getPathAlgorithmClass();
   disableButton(BUTTON_IDS.FindPath);
