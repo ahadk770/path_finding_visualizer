@@ -72,6 +72,7 @@ const handleFindPathClick = (_e, rows, cols) => {
   path.resetAbort();
   disableButton(BUTTON_IDS.FindPath);
   disableButton(BUTTON_IDS.Generate);
+  disableButton(BUTTON_IDS.PathOptions);
 
   const grid = getGrid(rows, cols, true);
   path.findPath(grid, document);
@@ -84,6 +85,7 @@ const resetGraph = async (_e, rows, cols) => {
   disableButton(BUTTON_IDS.Generate);
   disableButton(BUTTON_IDS.Reset);
   path.stopPathFinding();
+  path.setSpeed(1);
   await sleep(200);
 
   removeGrid();
@@ -91,6 +93,7 @@ const resetGraph = async (_e, rows, cols) => {
   enableButton(BUTTON_IDS.FindPath);
   enableButton(BUTTON_IDS.Generate);
   enableButton(BUTTON_IDS.Reset);
+  enableButton(BUTTON_IDS.PathOptions);
 };
 
 // Generate a random grid with walls

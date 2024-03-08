@@ -7,6 +7,7 @@ export const BUTTON_IDS = {
   Generate: "generate",
   Fast: "fast",
   Slow: "slow",
+  PathOptions: "pathOptions",
 };
 
 // Add more IDs here

@@ -25,7 +25,6 @@ export const DFS = {
 
       // run dfs recursively
       const dfsHelper = async (graph, x, y, visited, path) => {
-        console.log(this.speed);
         // stop dfs path
         if (this.abort) return;
         if (isInvalidCell(x, y, graph, visited)) return false;

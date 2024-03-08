@@ -28,7 +28,7 @@ export const createGrid = (rows, cols) => {
   const gridContainer = createGridContainer();
   for (var i = 0; i < rows; i++) {
     const rowContainer = createGridRowContainer(i);
-    rowContainer.appendChild(addLeftColumnIndex(i));
+    rowContainer.appendChild(addLeftColumnIndex(rows - i));
     for (var j = 0; j < cols; j++) {
       createGridCell(i, j, rows, cols, rowContainer);
     }
@@ -84,7 +84,7 @@ const addBottomRowIndex = (cols) => {
 
     idxContainer.id = CELL_CLASS_NAMES.Cell + getCellId(i, cols + 1);
     const rowIdx = document.createElement(CSS_ELEMENT.H3);
-    if (i !== 0) rowIdx.textContent = i - 1;
+    if (i !== 0) rowIdx.textContent = i;
     idxContainer.appendChild(rowIdx);
     bottomRow.appendChild(idxContainer);
   }

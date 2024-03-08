@@ -49,17 +49,18 @@ export const BFS = {
 
         const currNode = document.getElementById(CELL_CLASS_NAMES.Cell + key);
         if (currNode) {
-          await sleep(100 / this.speed);
+          await sleep(50 / this.speed);
           currNode.className = CELL_CLASS_NAMES.CellActive;
         }
 
         if (x === endPointX && y === endPointY) {
           const key = getCellId(x, y);
           // To-Do: Animate the final path (quickest path)
-          console.log(paths.dequeue());
+          const finalPath = paths.dequeue();
+          await animatePath(finalPath);
           const currNode = document.getElementById(CELL_CLASS_NAMES.Cell + key);
           if (currNode) {
-            await sleep(100 / this.speed);
+            await sleep(50 / this.speed);
             currNode.className = CELL_CLASS_NAMES.CellFound;
           }
           console.log("Found path...");
@@ -119,6 +120,16 @@ export const BFS = {
   async stopPathFinding() {
     BFS.abort = true;
   },
+};
+
+const animatePath = async (pathsString) => {
+  const paths = pathsString.split(" ");
+
+  for (const path of paths) {
+    const cellPath = getElementFromDoc(CELL_CLASS_NAMES.Cell + path);
+    cellPath.className = CELL_CLASS_NAMES.CellActive;
+    await sleep(100);
+  }
 };
 
 const animateNeighbors = async (x, y, graph, visited, element, speed) => {
