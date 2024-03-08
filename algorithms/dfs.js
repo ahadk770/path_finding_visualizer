@@ -40,10 +40,16 @@ export const DFS = {
           const currNode = document.getElementById(CELL_CLASS_NAMES.Cell + key);
           if (currNode) {
             await sleep(100 / this.speed);
-            currNode.className = CELL_CLASS_NAMES.CellFound;
+            currNode.className = CELL_CLASS_NAMES.CellVisited;
           }
+
           path.unshift(startingPoint);
           await animatePath(path, this.speed);
+
+          if (currNode) {
+            await sleep(100 / this.speed);
+            currNode.className = CELL_CLASS_NAMES.CellFound;
+          }
           console.log("Found path...");
           return true;
         }
