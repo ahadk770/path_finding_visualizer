@@ -16,12 +16,20 @@
 }
 
 .gridContainer {
-    display: grid;
+    display: flex;
     justify-items: center;
-    width: max-content;
-    
     margin: 1rem auto auto auto;
-    border: solid;
+    width: max-content;
+    position: relative;
+    flex-direction: column;
+}
+
+.idxContainer{
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header {

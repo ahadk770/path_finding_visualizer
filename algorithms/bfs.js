@@ -5,7 +5,7 @@ import {
   sleep,
 } from "../helpers/utils.js";
 import { Queue } from "../helpers/Queue.js";
-import { isInvalidCell } from "../helpers/gridHelper.js";
+import { isInvalidCell } from "../helpers/Grid/gridHelper.js";
 
 export const BFS = {
   abort: false,
@@ -30,6 +30,9 @@ export const BFS = {
       // Add neighboring nodes to queue
       const queue = new Queue();
       queue.add(startingPoint);
+
+      const paths = new Queue();
+      paths.add(getCellId(...startingPoint));
       while (!queue.isEmpty()) {
         const [x, y] = queue.dequeue();
         const key = getCellId(x, y);
@@ -40,6 +43,7 @@ export const BFS = {
         }
 
         if (isInvalidCell(x, y, graph, visited)) {
+          paths.dequeue();
           continue;
         }
 
@@ -51,6 +55,8 @@ export const BFS = {
 
         if (x === endPointX && y === endPointY) {
           const key = getCellId(x, y);
+          // To-Do: Animate the final path (quickest path)
+          console.log(paths.dequeue());
           const currNode = document.getElementById(CELL_CLASS_NAMES.Cell + key);
           if (currNode) {
             await sleep(100 / this.speed);
@@ -62,9 +68,15 @@ export const BFS = {
 
         visited.add(key);
 
+        const currPath = paths.dequeue();
+
+        paths.add(currPath + " " + getCellId(x + 1, y));
         queue.add([x + 1, y]);
+        paths.add(currPath + " " + getCellId(x - 1, y));
         queue.add([x - 1, y]);
+        paths.add(currPath + " " + getCellId(x, y + 1));
         queue.add([x, y + 1]);
+        paths.add(currPath + " " + getCellId(x, y - 1));
         queue.add([x, y - 1]);
 
         // mark neighbors of cells

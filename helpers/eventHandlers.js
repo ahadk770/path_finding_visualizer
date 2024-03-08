@@ -11,7 +11,8 @@ import {
   sleep,
   PATH_ALGORITHMS,
 } from "./utils.js";
-import { removeGrid, createGrid, getGrid } from "./gridHelper.js";
+import { removeGrid, getGrid } from "./Grid/gridHelper.js";
+import { createGrid } from "./Grid/createGrid.js";
 
 const RANDOM_WALL_PROB = 0.25;
 

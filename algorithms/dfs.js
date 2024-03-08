@@ -4,7 +4,7 @@ import {
   getElementFromDoc,
   sleep,
 } from "../helpers/utils.js";
-import { isInvalidCell } from "../helpers/gridHelper.js";
+import { isInvalidCell } from "../helpers/Grid/gridHelper.js";
 
 // TO-DO: Clean up this code and test it to validate this works repeated
 // TO-DO: Test animations

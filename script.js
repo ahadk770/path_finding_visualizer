@@ -1,5 +1,5 @@
 import { addEventListenerToButtons } from "./helpers/eventHandlers.js";
-import { createGrid } from "./helpers/gridHelper.js";
+import { createGrid } from "./helpers/Grid/createGrid.js";
 
 // initalize the program
 const initalizeVisualizer = (row, cols) => {
