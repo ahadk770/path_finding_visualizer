@@ -5,6 +5,7 @@ import {
   sleep,
 } from "../helpers/utils.js";
 import { isInvalidCell } from "../helpers/Grid/gridHelper.js";
+import { Queue } from "../helpers/Queue.js";
 
 // TO-DO: Clean up this code and test it to validate this works repeated
 // TO-DO: Test animations
@@ -16,6 +17,7 @@ export const DFS = {
       const rows = graph.length;
       const startingPoint = [rows - 1, 0];
       const [startingX, startingY] = startingPoint;
+      const fastestPath = new Queue();
 
       // Keep a set of visited nodes
       const visited = new Set();
@@ -40,6 +42,8 @@ export const DFS = {
             await sleep(100 / this.speed);
             currNode.className = CELL_CLASS_NAMES.CellFound;
           }
+          path.unshift(startingPoint);
+          await animatePath(path, this.speed);
           console.log("Found path...");
           return true;
         }
@@ -111,4 +115,14 @@ export const DFS = {
   async stopPathFinding() {
     DFS.abort = true;
   },
+};
+
+const animatePath = async (paths, speed) => {
+  for (const path of paths) {
+    const cellPath = getElementFromDoc(
+      CELL_CLASS_NAMES.Cell + getCellId(...path)
+    );
+    cellPath.className = CELL_CLASS_NAMES.CellActive;
+    await sleep(100 / speed);
+  }
 };
