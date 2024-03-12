@@ -1,5 +1,6 @@
 import { BFS } from "../algorithms/bfs.js";
 import { DFS } from "../algorithms/dfs.js";
+import { DIJKSTRA } from "../algorithms/dijkstra.js";
 import {
   BUTTON_IDS,
   getCellId,
@@ -63,6 +64,8 @@ const getPathAlgorithmClass = () => {
       return BFS;
     case PATH_ALGORITHMS.DFS:
       return DFS;
+    case PATH_ALGORITHMS.DIJKSTRA:
+      return DIJKSTRA;
   }
 };
 

@@ -4,7 +4,7 @@ import {
   getElementFromDoc,
   sleep,
 } from "../helpers/utils.js";
-import { Queue } from "../helpers/Queue.js";
+import { Queue } from "../helpers/DataStructures/Queue.js";
 import { isInvalidCell } from "../helpers/Grid/gridHelper.js";
 
 export const BFS = {

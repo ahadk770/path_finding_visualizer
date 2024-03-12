@@ -32,6 +32,7 @@ export const CELL_CLASS_NAMES = {
 export const PATH_ALGORITHMS = {
   DFS: "dfs",
   BFS: "bfs",
+  DIJKSTRA: "dijkstra",
 };
 
 export const getElementFromDoc = (id) => {

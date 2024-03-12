@@ -5,7 +5,7 @@ import {
   sleep,
 } from "../helpers/utils.js";
 import { isInvalidCell } from "../helpers/Grid/gridHelper.js";
-import { Queue } from "../helpers/Queue.js";
+import { Queue } from "../helpers/DataStructures/Queue.js";
 
 // TO-DO: Clean up this code and test it to validate this works repeated
 // TO-DO: Test animations
