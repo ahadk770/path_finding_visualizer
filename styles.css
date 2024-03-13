@@ -52,6 +52,7 @@
 .cell {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color: #FCD6D3;
     border-width: thin;
 }
@@ -59,6 +60,7 @@
 .cellSelected {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color: #666666;
     border-width: thin;
 }
@@ -67,6 +69,7 @@
 .cellVisited {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color: #D32323;
     border-width: thin;
 }
@@ -74,6 +77,7 @@
 .cellNeighbor {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color: #F8ADA8;
     border-width: thin;
 }
@@ -81,6 +85,7 @@
 .cellActive {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color:#FFEE98;
     border-width: thin;
 }
@@ -88,6 +93,7 @@
 .cellFound {
     height: 2.5rem;
     width: 2.5rem;
+    font-size: 1.5rem;
     background-color:#46923C;
     border-width: thin;
 }
