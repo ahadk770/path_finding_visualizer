@@ -15,7 +15,7 @@ import {
 import { removeGrid, getGrid } from "./Grid/gridHelper.js";
 import { createGrid } from "./Grid/createGrid.js";
 
-const RANDOM_WALL_PROB = 0.25;
+const RANDOM_WALL_PROB = 0.55;
 
 // called at the start of the program to attach handlers to buttons
 export const addEventListenerToButtons = (rows, cols) => {
@@ -103,17 +103,40 @@ const resetGraph = async (_e, rows, cols) => {
 const generateRandomGrid = async (_e, rows, cols) => {
   removeGrid();
   createGrid(rows, cols);
+  const validPath = createSingleValidPath(rows, cols);
+
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
       const random_boolean = Math.random() < RANDOM_WALL_PROB;
-      if (random_boolean) {
-        const cellElement = getElementFromDoc(
-          CELL_CLASS_NAMES.Cell + getCellId(i, j)
-        );
+      const cellId = getCellId(i, j);
+      if (random_boolean && !validPath.has(cellId)) {
+        const cellElement = getElementFromDoc(CELL_CLASS_NAMES.Cell + cellId);
         cellElement.className = CELL_CLASS_NAMES.CellSelected;
       }
     }
   }
+};
+
+const createSingleValidPath = (rows, cols) => {
+  const pathCells = new Set();
+  let x = rows - 1;
+  let y = 0;
+  pathCells.add(getCellId(x, y));
+
+  while (x > 0 && y < cols - 1) {
+    const UP_MOVE = Math.random() > 0.5;
+    UP_MOVE ? --x : ++y;
+    pathCells.add(getCellId(x, y));
+  }
+  while (x > 0) {
+    --x;
+    pathCells.add(getCellId(x, y));
+  }
+  while (y < cols - 1) {
+    ++y;
+    pathCells.add(getCellId(x, y));
+  }
+  return pathCells;
 };
 
 // Handle click on grid to create a wall

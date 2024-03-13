@@ -12,8 +12,10 @@ export const DIJKSTRA = {
       initDistanceOnEachCell(graph);
 
       const rows = graph.length;
+      const cols = graph[0].length;
       const startingPoint = [rows - 1, 0];
       const [startingX, startingY] = startingPoint;
+      const FINISH_KEY = getCellId(0, cols - 1);
 
       const visited = new Set();
       const heap = new Heap();
@@ -45,6 +47,8 @@ export const DIJKSTRA = {
           cell.minDist,
           this.speed
         );
+
+        if (cellKey === FINISH_KEY) return;
 
         const [x, y] = getCoordsFromId(cellKey);
         const neighboringCells = [
