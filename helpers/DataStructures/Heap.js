@@ -3,9 +3,9 @@ export class Heap {
     this.heap = [];
   }
 
-  add(element) {
+  add(element, property) {
     this.heap.push(element);
-    this.heap.sort((a, b) => a.minDist - b.minDist);
+    this.heap.sort((a, b) => a[property] - b[property]);
   }
 
   removeMinObject() {

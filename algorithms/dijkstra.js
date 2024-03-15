@@ -34,7 +34,7 @@ export const DIJKSTRA = {
 
       const startCellKey = getCellId(startingX, startingY);
       minimumDistance.set(startCellKey, 0);
-      heap.add({ key: startCellKey, minDist: 0 });
+      heap.add({ key: startCellKey, minDist: 0 }, "minDist");
 
       while (!heap.isEmpty()) {
         if (this.abort) return;
@@ -48,7 +48,10 @@ export const DIJKSTRA = {
           this.speed
         );
 
-        if (cellKey === FINISH_KEY) return;
+        if (cellKey === FINISH_KEY) {
+          console.log("Found path...");
+          return;
+        }
 
         const [x, y] = getCoordsFromId(cellKey);
         const neighboringCells = [
@@ -93,10 +96,13 @@ export const DIJKSTRA = {
               !visited.has(neighborCellKey) &&
               !heap.contains(neighborCellKey)
             ) {
-              heap.add({
-                key: neighborCellKey,
-                minDist: minimumDistance.get(neighborCellKey),
-              });
+              heap.add(
+                {
+                  key: neighborCellKey,
+                  minDist: minimumDistance.get(neighborCellKey),
+                },
+                "minDist"
+              );
             }
           }
         }
